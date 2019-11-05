@@ -21,9 +21,13 @@ sudo iptables -L -n | awk '$1=="REJECT" && $4!="0.0.0.0/0" {print $4}'
 
 https://www.ctrl.blog/entry/fail2ban-http403.html
 
+https://serverfault.com/questions/640873/how-to-ban-syn-flood-attacks-using-fail2ban
+
+
 [postfix-sasl]
 
 ```code
+[postfix-sasl]
 enabled  = true
 findtime  = 10800
 bantime = 7200
