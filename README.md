@@ -61,3 +61,12 @@ fail2ban-client status | grep "Banned IP list" | sed -E 's/^[^:]+:[ \t]+//' | se
 fail2ban-client status sshd
 fail2ban-client status sshd | grep "Banned IP list" | sed -E 's/^[^:]+:[ \t]+//' | sed 's/,//g'
 
+
+vim /bann_ip_sync.sh
+fail2ban-client set sshd banip 218.65.30.156
+
+fail2ban-client status sshs
+fail2ban-client status sshd
+fail2ban-client status | grep "Banned IP list"
+fail2ban-client status sshd
+fail2ban-client status | grep "Jail list:" | sed "s/ //g" | awk '{split($2,a,",");for(i in a) system("fail2ban-client status " a[i])}' | grep "Status\|IP list"
