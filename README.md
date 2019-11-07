@@ -39,3 +39,25 @@ logpath  = /var/log/mail.log
 backend  = %(postfix_backend)s
 maxretry = 2
 ```
+
+vim /etc/fail2ban/jail.conf
+sudo fail2ban-client status
+fail2ban-client status ssh
+sudo iptables -L -n | awk '$1=="REJECT" && $4!="0.0.0.0/0"'
+sudo iptables -L -n | awk '$1=="REJECT" && $4!="0.0.0.0/0" {print $4}'
+fail2ban-client status sshd
+fail2ban-client status ssh
+vim /etc/fail2ban/jail.conf
+fail2ban-client status ssh-iptables
+vim /etc/fail2ban/jail.conf
+fail2ban-client status | grep "Jail list" | sed -E 's/^[^:]+:[ \t]+//' | sed 's/,//g'
+fail2ban-client status
+sudo systemctl restart fail2ban
+service fail2ban restart
+vim /etc/fail2ban/jail.conf
+vim /etc/fail2ban/fail2ban.conf
+service fail2ban restart
+fail2ban-client status | grep "Banned IP list" | sed -E 's/^[^:]+:[ \t]+//' | sed 's/,//g'
+fail2ban-client status sshd
+fail2ban-client status sshd | grep "Banned IP list" | sed -E 's/^[^:]+:[ \t]+//' | sed 's/,//g'
+
