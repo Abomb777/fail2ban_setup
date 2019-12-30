@@ -6,6 +6,10 @@ Get info about jail block
 ```sh
 # fail2ban-client status sshd
 ```
+List all jails:
+```sh
+fail2ban-client status | grep "Jail list:" | sed "s/ //g" | awk '{split($2,a,",");for(i in a) system("fail2ban-client status " a[i])}' | grep "Status\|IP list"
+```
 View auth.log at real time:
 ```sh
 # tail -f /var/log/auth.log
